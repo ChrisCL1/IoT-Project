@@ -3,7 +3,7 @@ from func import *
 
 app = Flask(__name__)
 
-@app.route('/app', methods=['GET'])
+@app.route('/app', methods=['POST'])
 def bluetooth_scan():
     scanner = BluetoothScanner()
     scanner.perform_inquiry()
