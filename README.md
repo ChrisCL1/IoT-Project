@@ -6,6 +6,7 @@ This Python script utilizes the `bluetooth` library to scan for nearby Bluetooth
 
 - Python 3.7
 - `bluetooth` library
+- Docker installed on your system. You can download Docker from [Docker Hub](https://docs.docker.com/get-docker/).
 
 ## Installation
 
@@ -17,25 +18,48 @@ You need to have Python 3.7 installed on your system, you can download and insta
 
 After installing Python 3.7, you need to install the `bluetooth` library using pip, the Python package manager. Open a terminal or command prompt and run the following command:
 
-pip install pybluez
+    pip install pybluez
 
 This command will install the `pybluez` package, which provides Bluetooth functionality for Python.
 
-## Usage
+## Usage Instructions
 
-1. Clone or download the repository to your local machine.
-2. Navigate to the directory containing the `bluetooth_scanner.py` file.
-3. Run the script:
+1. Clone this repository to your local machine:
 
-python bluetooth_scanner.py
+    ```bash
+    git clone https://github.com/your_username/bluetooth-scanner.git
+    ```
 
-4. The script will perform a Bluetooth inquiry and print the addresses and names of the nearby devices.
+2. Navigate to the project directory:
 
-## Explanation
+    ```bash
+    cd bluetooth-scanner
+    ```
 
-- `BluetoothScanner` class: Represents a Bluetooth scanner object.
-- `perform_inquiry()`: Performs a Bluetooth inquiry to discover nearby devices.
-- `print_devices()`: Prints the addresses and names of the discovered devices.
+3. Build the Docker image:
+
+    ```bash
+    docker build -t bluetooth-scanner .
+    ```
+
+4. Run the Docker container:
+
+    ```bash
+    docker run -p 6000:6000 bluetooth-scanner
+    ```
+
+5. The application will now be available at `http://localhost:6000/app`. You can send POST requests to this endpoint to perform Bluetooth device scanning.
+
+## API Endpoint
+
+- `POST /app`: Performs a Bluetooth device scan and returns the found devices in JSON format.
+
+## Project Structure
+
+- `app.py`: Contains the definition of the Flask application and request routing.
+- `func.py`: Contains the implementation of the `BluetoothScanner` class that performs Bluetooth device scanning.
+- `Dockerfile`: Specifies how to build the Docker image for the application.
+- `requirements.txt`: Text file containing the Python dependencies required for the application.
 
 ## Notes
 
